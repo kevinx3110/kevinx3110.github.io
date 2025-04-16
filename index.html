@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapato Corp - Diversificación Empresarial</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Encabezado */
+        header {
+            background-color: black;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo span {
+            color: #0066cc;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a:hover {
+            color: #0066cc;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: black;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-top: 3px solid #0066cc;
+        }
+        
+        nav ul li:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #0066cc;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 0 0.5rem;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #0066cc;
+        }
+        
+        .btn:hover {
+            background-color: #0055aa;
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Sección Corporativa */
+        .corporate {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: black;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #0066cc;
+            margin: 1rem auto 0;
+        }
+        
+        .corporate-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .corporate-text {
+            flex: 1;
+        }
+        
+        .corporate-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .corporate-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .corporate-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Sección de Empresas */
+        .businesses {
+            padding: 4rem 0;
+            background-color: #f9f9f9;
+        }
+        
+        .businesses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .business-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .business-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .business-header {
+            background-color: black;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .business-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .business-body {
+            padding: 1.5rem;
+        }
+        
+        .business-body p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .business-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #0066cc;
+        }
+        
+        /* Sección Detalle Empresas */
+        .business-details {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .detail-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .business-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            border-bottom: 3px solid #0066cc;
+            color: #0066cc;
+        }
+        
+        .tab-btn:hover:not(.active) {
+            border-bottom: 3px solid #ddd;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .business-content {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .business-info {
+            flex: 1;
+        }
+        
+        .business-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .stat-item {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 0.3rem;
+        }
+        
+        .business-gallery {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-item.main {
+            grid-column: span 2;
+        }
+        
+        /* Sección Futuro */
+        .future {
+            padding: 4rem 0;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .future-item {
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .future-item:hover {
+            background-color: #0066cc;
+            color: white;
+        }
+        
+        .future-item:hover .future-icon {
+            color: white;
+        }
+        
+        .future-icon {
+            font-size: 2.5rem;
+            color: #0066cc;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+        
+        /* Sección Contacto */
+        .contact {
+            padding: 4rem 0;
+            background-color: #f9f9f9;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .contact-info h3 {
+            color: black;
+            margin-top: 0;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+        }
+        
+        /* Pie de página */
+        footer {
+            background-color: black;
+            color: white;
+            padding: 4rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            color: #0066cc;
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #0066cc;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #0066cc;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .corporate-content,
+            .business-content {
+                flex-direction: column;
+            }
+            
+            .hero {
+                padding: 5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .business-gallery {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ZAPATO<span>CORP</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li>
+                            <a href="#empresas">Nuestras Empresas <span>▼</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#zapato-cafe">Zapato Cafetería</a></li>
+                                <li><a href="#zapato-tv">Zapato TV</a></li>
+                                <li><a href="#shoe-news">Shoe News</a></li>
+                                <li><a href="#chaussure">Chaussure</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#corporativo">Corporativo</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Zapato Corp Group</h1>
+            <p>Un conglomerado diversificado que trasciende industrias, uniendo marcas innovadoras bajo una visión compartida de excelencia y creatividad.</p>
+            <div>
+                <a href="#empresas" class="btn">Explora nuestras empresas</a>
+                <a href="#contacto" class="btn btn-outline">Contáctanos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Corporativa -->
+    <section class="corporate" id="corporativo">
+        <div class="container">
+            <h2 class="section-title">Sobre Zapato Corp</h2>
+            <div class="corporate-content">
+                <div class="corporate-text">
+                    <p>Fundada en 1998 como una pequeña empresa de calzado, Zapato Corp ha evolucionado para convertirse en un holding diversificado con presencia en múltiples industrias. Aunque nuestro nombre rinde homenaje a nuestros humildes comienzos, hoy somos mucho más que calzado.</p>
+                    <p>Nuestra filosofía se basa en la innovación disruptiva, la calidad excepcional y la creación de experiencias memorables para nuestros clientes en cada uno de nuestros negocios.</p>
+                    <p>Con sede central en Madrid y operaciones en 15 países, el grupo Zapato Corp genera empleo para más de 2,500 colaboradores en todo el mundo y continúa expandiéndose estratégicamente.</p>
+                </div>
+                <div class="corporate-image">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Sede central de Zapato Corp">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Empresas -->
+    <section class="businesses" id="empresas">
+        <div class="container">
+            <h2 class="section-title">Nuestras Empresas</h2>
+            <div class="businesses-grid">
+                <!-- Zapato Cafetería -->
+                <div class="business-card" id="zapato-cafe">
+                    <div class="business-header">
+                        <h3>Zapato Cafetería</h3>
+                    </div>
+                    <div class="business-body">
+                        <div class="business-icon">☕</div>
+                        <p>Una experiencia gastronómica única donde el café de especialidad se encuentra con la innovación culinaria. Con 12 locales en 4 países, hemos redefinido el concepto de cafetería urbana.</p>
+                        <a href="#detalle-cafe" class="btn">Más información</a>
+                    </div>
+                </div>
+                
+                <!-- Zapato TV -->
+                <div class="business-card" id="zapato-tv">
+                    <div class="business-header">
+                        <h3>Zapato TV</h3>
+                    </div>
+                    <div class="business-body">
+                        <div class="business-icon">📺</div>
+                        <p>Nuestra plataforma de streaming y canal de televisión que ofrece contenido original, desde series dramáticas hasta programas de entrevistas con personalidades influyentes.</p>
+                        <a href="#detalle-tv" class="btn">Ver programación</a>
+                    </div>
+                </div>
+                
+                <!-- Shoe News -->
+                <div class="business-card" id="shoe-news">
+                    <div class="business-header">
+                        <h3>Shoe News</h3>
+                    </div>
+                    <div class="business-body">
+                        <div class="business-icon">📰</div>
+                        <p>El medio de comunicación más innovador del grupo, especializado en periodismo de investigación y análisis de tendencias globales con una redacción en 8 países.</p>
+                        <a href="#detalle-news" class="btn">Leer noticias</a>
+                    </div>
+                </div>
+                
+                <!-- Chaussure -->
+                <div class="business-card" id="chaussure">
+                    <div class="business-header">
+                        <h3>Chaussure</h3>
+                    </div>
+                    <div class="business-body">
+                        <div class="business-icon">🍷</div>
+                        <p>Nuestra exclusiva vinatería que importa y distribuye los mejores vinos de Europa y América del Sur, con catas personalizadas y clubes de vino premium.</p>
+                        <a href="#detalle-vino" class="btn">Explorar vinos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Detalle Empresas -->
+    <section class="business-details">
+        <div class="detail-container">
+            <div class="business-tabs">
+                <button class="tab-btn active" data-tab="tab-cafe">Zapato Cafetería</button>
+                <button class="tab-btn" data-tab="tab-tv">Zapato TV</button>
+                <button class="tab-btn" data-tab="tab-news">Shoe News</button>
+                <button class="tab-btn" data-tab="tab-vino">Chaussure</button>
+            </div>
+            
+            <!-- Zapato Cafetería -->
+            <div id="tab-cafe" class="tab-content active">
+                <div class="business-content">
+                    <div class="business-info">
+                        <h3 id="detalle-cafe">Zapato Cafetería</h3>
+                        <p>Fundada en 2010 como la primera diversificación del grupo, Zapato Cafetería ha revolucionado el concepto de cafeterías urbanas. Nuestros locales combinan diseño vanguardista con productos de la más alta calidad.</p>
+                        <p>Ofrecemos una selección de más de 30 tipos de café de origen único, acompañados de una propuesta gastronómica innovadora desarrollada por nuestro chef ejecutivo.</p>
+                        <div class="business-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">12</div>
+                                <div>Locales</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4</div>
+                                <div>Países</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">50+</div>
+                                <div>Empleados</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2010</div>
+                                <div>Fundación</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="business-gallery">
+                        <div class="gallery-item main">
+                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Interior Zapato Cafetería">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Café especialidad">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1561043433-aaf687c4cf04?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pastelería artesanal">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Zapato TV -->
+            <div id="tab-tv" class="tab-content">
+                <div class="business-content">
+                    <div class="business-info">
+                        <h3 id="detalle-tv">Zapato TV</h3>
+                        <p>Lanzada en 2015, Zapato TV es nuestra apuesta por el entretenimiento de calidad. Emitimos en 15 países y nuestra plataforma de streaming cuenta con más de 2 millones de suscriptores.</p>
+                        <p>Producciones originales como "La Sombra del Zapato" y "Café con Estilo" han recibido múltiples premios internacionales.</p>
+                        <div class="business-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">15</div>
+                                <div>Países</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2M+</div>
+                                <div>Suscriptores</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">25</div>
+                                <div>Premios</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2015</div>
+                                <div>Fundación</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="business-gallery">
+                        <div class="gallery-item main">
+                            <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Estudios Zapato TV">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Producción TV">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Equipo de producción">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Shoe News -->
+            <div id="tab-news" class="tab-content">
+                <div class="business-content">
+                    <div class="business-info">
+                        <h3 id="detalle-news">Shoe News</h3>
+                        <p>Nuestro medio de comunicación líder, fundado en 2018, combina periodismo tradicional con lo último en tecnología digital. Con corresponsales en 8 países, ofrecemos cobertura las 24 horas.</p>
+                        <p>Destacamos por nuestros análisis en profundidad y reportajes exclusivos sobre negocios, tecnología y cultura.</p>
+                        <div class="business-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">8</div>
+                                <div>Países</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">5M</div>
+                                <div>Lectores/mes</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">50</div>
+                                <div>Periodistas</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2018</div>
+                                <div>Fundación</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="business-gallery">
+                        <div class="gallery-item main">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Redacción Shoe News">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Equipo periodístico">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c7e6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Edición digital">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chaussure -->
+            <div id="tab-vino" class="tab-content">
+                <div class="business-content">
+                    <div class="business-info">
+                        <h3 id="detalle-vino">Chaussure</h3>
+                        <p>Nuestra vinatería premium, establecida en 2020, selecciona los mejores vinos de pequeñas bodegas familiares y grandes productores de Europa y América.</p>
+                        <p>Organizamos catas exclusivas, eventos con enólogos y ofrecemos membresías VIP con acceso a ediciones limitadas.</p>
+                        <div class="business-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">200+</div>
+                                <div>Etiquetas</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">12</div>
+                                <div>Países origen</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">1K</div>
+                                <div>Clientes VIP</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2020</div>
+                                <div>Fundación</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="business-gallery">
+                        <div class="gallery-item main">
+                            <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Bodega Chaussure">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Selección de vinos">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cata de vinos">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Futuro -->
+    <section class="future" id="futuro">
+        <div class="container">
+            <h2 class="section-title">En el Horizonte</h2>
+            <p>Zapato Corp continúa su expansión con nuevos proyectos emocionantes</p>
+            
+            <div class="future-grid">
+                <div class="future-item">
+                    <div class="future-icon">✈️</div>
+                    <h3>Zapato Airlines</h3>
+                    <p>Próximamente lanzaremos nuestra aerolínea de servicio premium con rutas selectas en Europa y América.</p>
+                </div>
+                
+                <div class="future-item">
+                    <div class="future-icon">💎</div>
+                    <h3>Zapato Perfumes</h3>
+                    <p>Una línea de fragancias exclusivas creadas por los mejores narices de París, llegando en 2024.</p>
+                </div>
+                
+                <div class="future-item">
+                    <div class="future-icon">🏨</div>
+                    <h3>Zapato Hotels</h3>
+                    <p>Nuestra incursión en la industria hotelera con un concepto boutique revolucionario.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Información Corporativa</h3>
+                    <p><strong>Dirección:</strong> Torre Zapato Corp, Av. de la Innovación, 25, 28042 Madrid, España</p>
+                    <p><strong>Teléfono:</strong> +34 91 123 45 67</p>
+                    <p><strong>Email:</strong> info@zapatocorp.com</p>
+                    <p><strong>Horario:</strong> Lunes a Viernes, 9:00 - 18:00</p>
+                    
+                    <h3 style="margin-top: 2rem;">Contacto por Empresa</h3>
+                    <p><strong>Zapato Cafetería:</strong> cafe@zapatocorp.com</p>
+                    <p><strong>Zapato TV:</strong> tv@zapatocorp.com</p>
+                    <p><strong>Shoe News:</strong> news@zapatocorp.com</p>
+                    <p><strong>Chaussure:</strong> vinos@zapatocorp.com</p>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Envíanos un mensaje</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nombre completo</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Empresa de interés</label>
+                            <select id="company">
+                                <option value="">Seleccione una opción</option>
+                                <option value="general">Zapato Corp (General)</option>
+                                <option value="cafe">Zapato Cafetería</option>
+                                <option value="tv">Zapato TV</option>
+                                <option value="news">Shoe News</option>
+                                <option value="vino">Chaussure</option>
+                                <option value="future">Proyectos Futuros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Zapato Corp Group</h3>
+                    <p>Innovando a través de industrias desde 1998.</p>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">TW</a>
+                        <a href="#">IG</a>
+                        <a href="#">IN</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Empresas</h3>
+                    <ul>
+                        <li><a href="#zapato-cafe">Zapato Cafetería</a></li>
+                        <li><a href="#zapato-tv">Zapato TV</a></li>
+                        <li><a href="#shoe-news">Shoe News</a></li>
+                        <li><a href="#chaussure">Chaussure</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Corporativo</h3>
+                    <ul>
+                        <li><a href="#">Inversores</a></li>
+                        <li><a href="#">Trabaja con nosotros</a></li>
+                        <li><a href="#">Sostenibilidad</a></li>
+                        <li><a href="#">Noticias corporativas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Torre Zapato Corp</li>
+                        <li>Av. de la Innovación, 25</li>
+                        <li>28042 Madrid, España</li>
+                        <li>+34 91 123 45 67</li>
+                        <li>info@zapatocorp.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Zapato Corp Group. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Funcionalidad de pestañas
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remover clase active de todos los botones y contenidos
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Agregar clase active al botón clickeado
+                btn.classList.add('active');
+                
+                // Mostrar el contenido correspondiente
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Smooth scrolling para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```
